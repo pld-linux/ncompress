@@ -64,8 +64,8 @@ make "RPM_OPT_FLAGS=$RPM_OPT_FLAGS -DNOALLIGN=0" ENDIAN=4321
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/usr/{bin,man/{man1,pl/man1}}
 
-install -s compress $RPM_BUILD_ROOT/usr/bin
-ln -sf compress $RPM_BUILD_ROOT/usr/bin/uncompress
+install -s compress $RPM_BUILD_ROOT%{_bindir}
+ln -sf compress $RPM_BUILD_ROOT%{_bindir}/uncompress
 install compress.1 $RPM_BUILD_ROOT%{_mandir}/man1
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/compress.1
 
@@ -81,7 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {LZW.INFO,README}.gz
-%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) %{_bindir}/*
 
 %lang(pl) %{_mandir}/pl/man1/*
 %{_mandir}/man1/*
