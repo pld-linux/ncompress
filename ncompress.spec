@@ -82,14 +82,12 @@ for a in de it pl ; do
 	echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/$a/man1/uncompress.1
 done
 
-gzip -9nf LZW.INFO README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {LZW.INFO,README}.gz
+%doc LZW.INFO README
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 %lang(de) %{_mandir}/de/man1/*
