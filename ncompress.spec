@@ -12,7 +12,7 @@ Group(pl):	Narzêdzia//Archiwizacja
 Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
 Source1:	compress.1.pl
 Patch:		ncompress-make.patch
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 ncompress is a utility that will do fast compression and decompression
