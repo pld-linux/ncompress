@@ -5,7 +5,7 @@ Summary(pl):	Narzêdzie do szybkiego kompresowania plików
 Summary(tr):	Hýzlý bir sýkýþtýrma aracý
 Name:		ncompress
 Version:	4.2.4
-Release:	15
+Release:	19
 Copyright:	unknown
 Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
@@ -52,16 +52,16 @@ sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 %patch -p1
 
 %build
-%ifarch i386 i486 i586 i686
-%{__make} "RPM_OPT_FLAGS=$RPM_OPT_FLAGS" ENDIAN=4321
+%ifarch %{ix86}
+%{__make} ENDIAN=4321
 %endif
 
-%ifarch sparc m68k
-%{__make} "RPM_OPT_FLAGS=$RPM_OPT_FLAGS" ENDIAN=1234
+%ifarch sparc sparc64 m68k
+%{__make} ENDIAN=1234
 %endif
 
-%ifarch alpha
-%{__make} "RPM_OPT_FLAGS=$RPM_OPT_FLAGS -DNOALLIGN=0" ENDIAN=4321
+%ifarch alpha ia64
+make "RPM_OPT_FLAGS=$RPM_OPT_FLAGS -DNOALLIGN=0" ENDIAN=4321
 %endif
 
 %install
