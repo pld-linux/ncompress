@@ -68,6 +68,9 @@ install compress.1 $RPM_BUILD_ROOT/usr/man/man1
 
 echo ".so compress.1" > $RPM_BUILD_ROOT/usr/man/man1/uncompress.1
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %files
 %attr(644, root, root, 755) %doc LZW.INFO README
 %attr(755, root, root) /usr/bin/*
