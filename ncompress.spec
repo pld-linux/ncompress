@@ -64,7 +64,7 @@ sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 %{__make} OPT="%{rpmcflags}" ENDIAN=1234
 %endif
 
-%ifarch alpha ia64
+%ifarch alpha ia64 amd64
 %{__make} OPT="%{rpmcflags} -DNOALLIGN=0" ENDIAN=4321
 %endif
 
