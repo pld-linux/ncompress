@@ -53,15 +53,15 @@ sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 
 %build
 %ifarch i386 i486 i586 i686
-make "RPM_OPT_FLAGS=$RPM_OPT_FLAGS" ENDIAN=4321
+%{__make} "RPM_OPT_FLAGS=$RPM_OPT_FLAGS" ENDIAN=4321
 %endif
 
 %ifarch sparc m68k
-make "RPM_OPT_FLAGS=$RPM_OPT_FLAGS" ENDIAN=1234
+%{__make} "RPM_OPT_FLAGS=$RPM_OPT_FLAGS" ENDIAN=1234
 %endif
 
 %ifarch alpha
-make "RPM_OPT_FLAGS=$RPM_OPT_FLAGS -DNOALLIGN=0" ENDIAN=4321
+%{__make} "RPM_OPT_FLAGS=$RPM_OPT_FLAGS -DNOALLIGN=0" ENDIAN=4321
 %endif
 
 %install
