@@ -41,7 +41,7 @@ ncompress jest narzêdziem umo¿liwiaj±cym szybk± kompresjê i
 dekompresjê plików zgodnym z oryginalnym *niksowym narzêdziem o nazwie
 compress (tworzy pliki z rozszerzeniem .Z). ncompress nie obs³uguje
 plików .gz (ale gzip potrafi obs³ugiwaæ pliki ncompress-a). ncompress
-jest raczej przestarza³ym programem - o ile nnie potrzebujesz
+jest raczej przestarza³ym programem - o ile nie potrzebujesz
 wymieniaæ plików z naprawdê starymi *niksami, u¿ywaj programów gzip
 lub bzip2.
 
