@@ -62,7 +62,7 @@ make "RPM_OPT_FLAGS=$RPM_OPT_FLAGS -DNOALLIGN=0" ENDIAN=4321
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/{bin,man/{man1,pl/man1}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/{man1,pl/man1}}
 
 install -s compress $RPM_BUILD_ROOT%{_bindir}
 ln -sf compress $RPM_BUILD_ROOT%{_bindir}/uncompress
@@ -87,28 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
-* Sat Apr 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+* Fri Jun  4 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [4.2.4-15]
-- added pl man pages for compress,
-- gzipping %doc and man pages,
-- recompiles on new rpm.
-
-* Sun Aug 30 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [4.2.4-11]
-- added -q %setup parameter,
-- spec rewrited for using Buildroot,
-- aded pl translation,
-- uncompress(1) man page is now maked as nroff include to compress(1)
-  instead making sym link to compress.1 (this allow compress man pages
-   in future),
-- added %attr and %defattr macros in %files (allows build package from
-  non-root account).
-
-* Mon Apr 27 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Wed Oct 21 1997 Cristian Gafton <gafton@redhat.com>
-- fixed the spec file
-
-* Mon Jun 02 1997 Erik Troan <ewt@redhat.com>
-- built against glibc
+- based on RH spec,
+- spec rewrited by PLD team.
