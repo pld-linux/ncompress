@@ -1,4 +1,4 @@
-Summary:	a fast compress utility
+Summary:	A fast compress utility
 Summary(de):	ein schnelles Komprimierungs-Dienstprogramm
 Summary(fr):	Utilitaire rapide de compression
 Summary(pl):	Narzêdzie do szybkiego kompresowania plików
@@ -38,9 +38,12 @@ gzip puisse gérer les images compress).
 
 %description -l pl
 ncompress jest narzêdziem umo¿liwiaj±cym szybk± kompresjê i
-dekompresjê plików zgodnym z orginalnym *nixowym narzêdziem o nazwie
-compress (tworzy pliki z rozszerzeniem .Z). ncompres nie obs³uguje
-plików .gz (ale gzip potrafi obs³ugiwaæ pliki ncompress-a).
+dekompresjê plików zgodnym z oryginalnym *niksowym narzêdziem o nazwie
+compress (tworzy pliki z rozszerzeniem .Z). ncompress nie obs³uguje
+plików .gz (ale gzip potrafi obs³ugiwaæ pliki ncompress-a). ncompress
+jest raczej przestarza³ym programem - o ile nnie potrzebujesz
+wymieniaæ plików z naprawdê starymi *niksami, u¿ywaj programów gzip
+lub bzip2.
 
 %description -l tr
 ncompress, orijinal Un*X compress uygulamasý ile uyumlu (.Z uzantýlý)
@@ -49,7 +52,7 @@ ile sýkýþtýrýlmýþ dosyalarla iþlem yapamaz. (gzip compress ile
 sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 
 %prep
-%setup -q
+%setup -q -a1
 %patch -p1
 
 %build
@@ -79,7 +82,7 @@ for a in da de it pl ; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$a/man1
 	install $a/man1/* $RPM_BUILD_ROOT%{_mandir}/$a/man1/
 	echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/$a/man1/uncompress.1
-endif
+done
 
 gzip -9nf LZW.INFO README
 
