@@ -54,15 +54,15 @@ sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 
 %build
 %ifarch %{ix86}
-%{__make} OPT="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" ENDIAN=4321
+%{__make} OPT="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}" ENDIAN=4321
 %endif
 
 %ifarch sparc sparc64 m68k
-%{__make} OPT="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" ENDIAN=1234
+%{__make} OPT="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}" ENDIAN=1234
 %endif
 
 %ifarch alpha ia64
-make OPT="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g} -DNOALLIGN=0" ENDIAN=4321
+make OPT="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS} -DNOALLIGN=0" ENDIAN=4321
 %endif
 
 %install
