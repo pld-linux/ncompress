@@ -3,7 +3,7 @@
 .PU
 .TH compress 1 local
 .SH NAZWA
-compress, uncompress, zcat \- skompresuj i zdekompresuj dane (wersja 4.1)
+compress, uncompress, zcat \- kompresuj i dekompresuj dane (wersja 4.1)
 .SH SK£ADNIA
 .ll +8
 .B compress
@@ -79,7 +79,7 @@ którego nazwa koñczy siê rozszerzeniem
 i w nag³ówku pliku znajduje siê prawid³owa liczba (magic number) jest
 dekompresowany i z jego nazwy usuwane jest rozszerzenie
 .BR "\&.Z" .
-Zdekompresowny plik bêdzie mia³ te same w³a¶ciow¶ci, co plik skompresowany,
+Zdekompresowny plik bêdzie mia³ te same w³a¶ciwo¶ci, co plik skompresowany,
 tzn. w³a¶ciciela, tryb dostêpu oraz czas dostêpu i modyfikacji.
 .PP
 Opcja
@@ -114,7 +114,7 @@ poddane kompresji.
 Opcja
 .B \-V
 spowoduje wypisanie na standardowe wyj¶cie b³êdów wersji programu, jak
-równie¿ opcji preprocesora u¿ytych w trakcie kompilacji. Nastepnie
+równie¿ opcji preprocesora u¿ytych w trakcie kompilacji. Nastêpnie
 dokonywana jest kompresja/dekompresja podanych plików.
 .PP
 .I compress
@@ -175,7 +175,7 @@ po skompresowaniu ka¿dego pliku wypisywana jest informacja na temat
 osi±gniêtego stopnia kompresji.
 .PP
 Kod wyj¶cia jest normalnie równy 0; je¿eli ostatni plik jest po (próbie)
-kompresji wiêkszy ni¿ przedtem, kod wyj¶cia jest równy 2; je¿eli wystapi
+kompresji wiêkszy ni¿ przedtem, kod wyj¶cia jest równy 2; je¿eli wyst±pi
 jaki¶ inny b³±d, kod wyj¶cia jest równy 1.
 .SH "ZOBACZ TAK¯E"
 pack(1), compact(1)
@@ -259,7 +259,7 @@ aby wymusiæ kompresjê plików maj±cych twarde dowi±zania.
 .in -8
 -- file unchanged
 .in +8
-Rozmiar pliku nie zmniejszy³ sie po kompresji. Plik zostanie pozostawiony w
+Rozmiar pliku nie zmniejszy³ siê po kompresji. Plik zostanie pozostawiony w
 oryginalnej postaci.
 .in -8
 .SH "PROBLEMY"
@@ -270,7 +270,7 @@ u¿ywaæ opcji
 poniewa¿ dekompresja mo¿e byæ niemo¿liwa na komputerach z mniejsz± ilo¶ci±
 pamiêci (64KB lub mniej, jak na komputerach serii DEC PDP, lub Intel 80286, etc.)
 .PP
-Uruchomienie proramu z opcj± \-r mo¿e niekiedy spowodowaæ fa³szywe
+Uruchomienie programu z opcj± \-r mo¿e niekiedy spowodowaæ fa³szywe
 komunikaty o b³êdach postaci
 .PP
 .in 8
