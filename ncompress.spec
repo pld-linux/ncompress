@@ -62,7 +62,7 @@ sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 %endif
 
 %ifarch alpha ia64
-make OPT="%{rpmcflags} -DNOALLIGN=0" ENDIAN=4321
+%{__make} OPT="%{rpmcflags} -DNOALLIGN=0" ENDIAN=4321
 %endif
 
 %install
