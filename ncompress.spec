@@ -13,6 +13,7 @@ Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	1f664b832aee8282bc50f54635b98130
 Patch0:		%{name}-make.patch
+Patch1:		%{name}-gcc34.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -53,7 +54,8 @@ sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 
 %prep
 %setup -q -a1
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 %ifarch %{ix86}
