@@ -8,7 +8,7 @@ Version:	4.2.4
 Release:	15
 Copyright:	unknown
 Group:		Utilities/Archiving
-Group(pl):	Narzêdzia//Archiwizacja
+Group(pl):	Narzêdzia/Archiwizacja
 Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
 Source1:	compress.1.pl
 Patch:		ncompress-make.patch
