@@ -5,7 +5,7 @@ Summary(pl):	Narzêdzie do szybkiego kompresowania plików
 Summary(tr):	Hýzlý bir sýkýþtýrma aracý
 Name:		ncompress
 Version:	4.2.4
-Release:	24
+Release:	25
 License:	distributable
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
@@ -78,7 +78,7 @@ ln -sf compress $RPM_BUILD_ROOT%{_bindir}/uncompress
 install compress.1 $RPM_BUILD_ROOT%{_mandir}/man1
 echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/man1/uncompress.1
 
-for a in da de it pl ; do
+for a in de it pl ; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$a/man1
 	install $a/man1/* $RPM_BUILD_ROOT%{_mandir}/$a/man1/
 	echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/$a/man1/uncompress.1
@@ -94,7 +94,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc {LZW.INFO,README}.gz
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
-%lang(da) %{_mandir}/da/man1/*
 %lang(de) %{_mandir}/de/man1/*
 %lang(it) %{_mandir}/it/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
