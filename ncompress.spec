@@ -1,17 +1,18 @@
-Summary:	a fast compress utility
+Summary:	A fast compress utility
 Summary(de):	ein schnelles Komprimierungs-Dienstprogramm
 Summary(fr):	Utilitaire rapide de compression
 Summary(pl):	Narzêdzie do szybkiego kompresowania plików
 Summary(tr):	Hýzlý bir sýkýþtýrma aracý
 Name:		ncompress
 Version:	4.2.4
-Release:	19
-Copyright:	unknown
-Group:		Utilities/Archiving
-Group(pl):	Narzêdzia/Archiwizacja
+Release:	24
+License:	Distributable
+Group:		Applications/Archiving
+Group(de):	Applikationen/Archivierung
+Group(pl):	Aplikacje/Archiwizacja
 Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
-Source1:	compress.1.pl
-Patch0:		ncompress-make.patch
+Source1:	%{name}-non-english-man-pages.tar.bz2
+Patch0:		%{name}-make.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -37,9 +38,12 @@ gzip puisse gérer les images compress).
 
 %description -l pl
 ncompress jest narzêdziem umo¿liwiaj±cym szybk± kompresjê i
-dekompresjê plików zgodnym z orginalnym *nixowym narzêdziem o nazwie
-compress (tworzy pliki z rozszerzeniem .Z). ncompres nie obs³uguje
-plików .gz (ale gzip potrafi obs³ugiwaæ pliki ncompress-a).
+dekompresjê plików zgodnym z oryginalnym *niksowym narzêdziem o nazwie
+compress (tworzy pliki z rozszerzeniem .Z). ncompress nie obs³uguje
+plików .gz (ale gzip potrafi obs³ugiwaæ pliki ncompress-a). ncompress
+jest raczej przestarza³ym programem - o ile nnie potrzebujesz
+wymieniaæ plików z naprawdê starymi *niksami, u¿ywaj programów gzip
+lub bzip2.
 
 %description -l tr
 ncompress, orijinal Un*X compress uygulamasý ile uyumlu (.Z uzantýlý)
@@ -48,36 +52,39 @@ ile sýkýþtýrýlmýþ dosyalarla iþlem yapamaz. (gzip compress ile
 sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 
 %prep
-%setup -q
+%setup -q -a1
 %patch -p1
 
 %build
 %ifarch %{ix86}
-%{__make} ENDIAN=4321
+%{__make} OPT="%{rpmcflags}" ENDIAN=4321
 %endif
 
-%ifarch sparc sparc64 m68k
-%{__make} ENDIAN=1234
+%ifarch sparc sparc64 m68k armv4l ppc s390
+%{__make} OPT="%{rpmcflags}" ENDIAN=1234
 %endif
 
 %ifarch alpha ia64
-make "RPM_OPT_FLAGS=$RPM_OPT_FLAGS -DNOALLIGN=0" ENDIAN=4321
+%{__make} OPT="%{rpmcflags} -DNOALLIGN=0" ENDIAN=4321
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/{man1,pl/man1}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 
-install -s compress $RPM_BUILD_ROOT%{_bindir}
+install compress $RPM_BUILD_ROOT%{_bindir}
 ln -sf compress $RPM_BUILD_ROOT%{_bindir}/uncompress
+
 install compress.1 $RPM_BUILD_ROOT%{_mandir}/man1
-install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/compress.1
-
 echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/man1/uncompress.1
-echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/pl/man1/uncompress.1
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/{man1/*,pl/man1/*} \
-	LZW.INFO README
+for a in da de it pl ; do
+	install -d $RPM_BUILD_ROOT%{_mandir}/$a/man1
+	install $a/man1/* $RPM_BUILD_ROOT%{_mandir}/$a/man1/
+	echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/$a/man1/uncompress.1
+done
+
+gzip -9nf LZW.INFO README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -86,6 +93,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {LZW.INFO,README}.gz
 %attr(755,root,root) %{_bindir}/*
-
-%lang(pl) %{_mandir}/pl/man1/*
 %{_mandir}/man1/*
+%lang(da) %{_mandir}/da/man1/*
+%lang(de) %{_mandir}/de/man1/*
+%lang(it) %{_mandir}/it/man1/*
+%lang(pl) %{_mandir}/pl/man1/*
