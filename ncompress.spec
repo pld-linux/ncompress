@@ -6,7 +6,7 @@ Summary(tr):	Hýzlý bir sýkýþtýrma aracý
 Name:		ncompress
 Version:	4.2.4
 Release:	24
-License:	Distributable
+License:	distributable
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
 Group(pl):	Aplikacje/Archiwizacja
