@@ -1,16 +1,17 @@
-Summary:     a fast compress utility
-Summary(de): ein schnelles Komprimierungs-Dienstprogramm
-Summary(fr): Utilitaire rapide de compression
-Summary(pl): Narzêdzie do szybkiego kompresowania plików
-Summary(tr): Hýzlý bir sýkýþtýrma aracý
-Name:        ncompress
-Version:     4.2.4
-Release:     11
-Copyright:   unknown
-Group:       Utilities/Archiving
-Source:      ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
-Patch:       ncompress-4.2.4-make.patch
-Buildroot:   /tmp/%{name}-%{version}-root
+Summary:	a fast compress utility
+Summary(de):	ein schnelles Komprimierungs-Dienstprogramm
+Summary(fr):	Utilitaire rapide de compression
+Summary(pl):	Narzêdzie do szybkiego kompresowania plików
+Summary(tr):	Hýzlý bir sýkýþtýrma aracý
+Name:		ncompress
+Version:	4.2.4
+Release:	15
+Copyright:	unknown
+Group:		Utilities/Archiving
+Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
+Source1:	compress.1.pl
+Patch:		ncompress-make.patch
+Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
 ncompress is a utility that will do fast compression and decompression
@@ -60,23 +61,37 @@ make "RPM_OPT_FLAGS=$RPM_OPT_FLAGS -DNOALLIGN=0" ENDIAN=4321
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/{bin,man/man1}
+install -d $RPM_BUILD_ROOT/usr/{bin,man/{man1,pl/man1}}
 
 install -s compress $RPM_BUILD_ROOT/usr/bin
 ln -sf compress $RPM_BUILD_ROOT/usr/bin/uncompress
 install compress.1 $RPM_BUILD_ROOT/usr/man/man1
+install %{SOURCE1} $RPM_BUILD_ROOT/usr/man/pl/man1/compress.1
 
 echo ".so compress.1" > $RPM_BUILD_ROOT/usr/man/man1/uncompress.1
+echo ".so compress.1" > $RPM_BUILD_ROOT/usr/man/pl/man1/uncompress.1
+
+gzip -9nf $RPM_BUILD_ROOT/usr/man/{man1/*,pl/man1/*} \
+	LZW.INFO README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(644, root, root, 755) %doc LZW.INFO README
-%attr(755, root, root) /usr/bin/*
-%attr(644, root,  man) /usr/man/man1/*
+%defattr(644,root,root,755)
+%doc {LZW.INFO,README}.gz
+%attr(755,root,root) /usr/bin/*
+
+/usr/man/man1/*
+%lang(pl) /usr/man/pl/man1/*
 
 %changelog
+* Sat Apr 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [4.2.4-15]
+- added pl man pages for compress,
+- gzipping %doc and man pages,
+- recompiles on new rpm.
+
 * Sun Aug 30 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [4.2.4-11]
 - added -q %setup parameter,
