@@ -5,7 +5,7 @@ Summary(pl):	Narzêdzie do szybkiego kompresowania plików
 Summary(tr):	Hýzlý bir sýkýþtýrma aracý
 Name:		ncompress
 Version:	4.2.4
-Release:	21
+Release:	22
 License:	unknown
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
@@ -57,7 +57,7 @@ sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 %{__make} OPT="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}" ENDIAN=4321
 %endif
 
-%ifarch sparc sparc64 m68k
+%ifarch sparc sparc64 m68k armv4l ppc s390
 %{__make} OPT="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}" ENDIAN=1234
 %endif
 
