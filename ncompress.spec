@@ -5,13 +5,14 @@ Summary(pl):	Narzêdzie do szybkiego kompresowania plików
 Summary(tr):	Hýzlý bir sýkýþtýrma aracý
 Name:		ncompress
 Version:	4.2.4
-Release:	19
-Copyright:	unknown
-Group:		Utilities/Archiving
-Group(pl):	Narzêdzia/Archiwizacja
+Release:	21
+License:	unknown
+Group:		Applications/Archiving
+Group(de):	Applikationen/Archivierung
+Group(pl):	Aplikacje/Archiwizacja
 Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
 Source1:	compress.1.pl
-Patch0:		ncompress-make.patch
+Patch0:		%{name}-make.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -53,22 +54,22 @@ sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 
 %build
 %ifarch %{ix86}
-%{__make} ENDIAN=4321
+%{__make} OPT="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" ENDIAN=4321
 %endif
 
 %ifarch sparc sparc64 m68k
-%{__make} ENDIAN=1234
+%{__make} OPT="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" ENDIAN=1234
 %endif
 
 %ifarch alpha ia64
-make "RPM_OPT_FLAGS=$RPM_OPT_FLAGS -DNOALLIGN=0" ENDIAN=4321
+make OPT="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g} -DNOALLIGN=0" ENDIAN=4321
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/{man1,pl/man1}}
 
-install -s compress $RPM_BUILD_ROOT%{_bindir}
+install compress $RPM_BUILD_ROOT%{_bindir}
 ln -sf compress $RPM_BUILD_ROOT%{_bindir}/uncompress
 install compress.1 $RPM_BUILD_ROOT%{_mandir}/man1
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/compress.1
@@ -76,8 +77,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/compress.1
 echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/man1/uncompress.1
 echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/pl/man1/uncompress.1
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/{man1/*,pl/man1/*} \
-	LZW.INFO README
+gzip -9nf LZW.INFO README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -86,6 +86,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {LZW.INFO,README}.gz
 %attr(755,root,root) %{_bindir}/*
-
-%lang(pl) %{_mandir}/pl/man1/*
 %{_mandir}/man1/*
+%lang(pl) %{_mandir}/pl/man1/*
