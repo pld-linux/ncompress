@@ -10,6 +10,7 @@ License:	distributable
 Group:		Applications/Archiving
 Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
 Source1:	%{name}-non-english-man-pages.tar.bz2
+# Source1-md5: 1f664b832aee8282bc50f54635b98130
 Patch0:		%{name}-make.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
