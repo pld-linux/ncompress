@@ -5,13 +5,13 @@ Summary(pl):	Narzêdzie do szybkiego kompresowania plików
 Summary(tr):	Hýzlý bir sýkýþtýrma aracý
 Name:		ncompress
 Version:	4.2.4
-Release:	23
+Release:	24
 License:	Distributable
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
 Group(pl):	Aplikacje/Archiwizacja
 Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
-Source1:	compress.1.pl
+Source1:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-make.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -67,15 +67,19 @@ sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/{man1,pl/man1}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 
 install compress $RPM_BUILD_ROOT%{_bindir}
 ln -sf compress $RPM_BUILD_ROOT%{_bindir}/uncompress
-install compress.1 $RPM_BUILD_ROOT%{_mandir}/man1
-install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/compress.1
 
+install compress.1 $RPM_BUILD_ROOT%{_mandir}/man1
 echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/man1/uncompress.1
-echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/pl/man1/uncompress.1
+
+for a in da de it pl ; do
+	install -d $RPM_BUILD_ROOT%{_mandir}/$a/man1
+	install $a/man1/* $RPM_BUILD_ROOT%{_mandir}/$a/man1/
+	echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/$a/man1/uncompress.1
+endif
 
 gzip -9nf LZW.INFO README
 
@@ -87,4 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc {LZW.INFO,README}.gz
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
+%lang(da) %{_mandir}/da/man1/*
+%lang(de) %{_mandir}/de/man1/*
+%lang(it) %{_mandir}/it/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
