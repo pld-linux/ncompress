@@ -85,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 - uncompress(1) man page is now maked as nroff include to compress(1)
   instead making sym link to compress.1 (this allow compress man pages
    in future),
-- added %attr and %defattr macros in %files (allow build package from
+- added %attr and %defattr macros in %files (allows build package from
   non-root account).
 
 * Mon Apr 27 1998 Prospector System <bugs@redhat.com>
