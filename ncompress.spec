@@ -82,8 +82,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc {LZW.INFO,README}.gz
 %attr(755,root,root) /usr/bin/*
 
-/usr/man/man1/*
 %lang(pl) /usr/man/pl/man1/*
+/usr/man/man1/*
 
 %changelog
 * Sat Apr 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
