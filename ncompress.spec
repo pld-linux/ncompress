@@ -11,39 +11,41 @@ Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
 Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
 Source1:	compress.1.pl
-Patch:		ncompress-make.patch
+Patch0:		ncompress-make.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 ncompress is a utility that will do fast compression and decompression
-compatible with the original *nix compress utility (.Z extensions). It will
-not handle gzipped (.gz) images (although gzip can handle compress images).
-It is pretty much obsolete - unless you need to exchange files with some
-really odd unix variants, use gzip or bzip2 instead.
+compatible with the original *nix compress utility (.Z extensions). It
+will not handle gzipped (.gz) images (although gzip can handle
+compress images). It is pretty much obsolete - unless you need to
+exchange files with some really odd unix variants, use gzip or bzip2
+instead.
 
 %description -l de
-ncompress ist ein Utility zur Durchführung schneller Komprimierungen und
-Dekomprimierungen, das zu dem Original *nix-Komprimierungs-Utility (.Z-
-Erweiterungen) kompatibel ist. gzip-Grafikdateien (.gz) können damit nicht
-verarbeitet werden (obwohl gzip mit compress-Dateien arbeiten kann).
+ncompress ist ein Utility zur Durchführung schneller Komprimierungen
+und Dekomprimierungen, das zu dem Original *nix-Komprimierungs-Utility
+(.Z- Erweiterungen) kompatibel ist. gzip-Grafikdateien (.gz) können
+damit nicht verarbeitet werden (obwohl gzip mit compress-Dateien
+arbeiten kann).
 
 %description -l fr
 ncompress est un utilitaire qui effectue une compression et une
 décompression rapide avec l'utilitaire de compression *nix original
-(extension .Z). Il ne gère pas les images gzippées (.gz) (bien que gzip
-puisse gérer les images compress).
+(extension .Z). Il ne gère pas les images gzippées (.gz) (bien que
+gzip puisse gérer les images compress).
 
 %description -l pl
-ncompress jest narzêdziem umo¿liwiaj±cym szybk± kompresjê i dekompresjê
-plików zgodnym z orginalnym *nixowym narzêdziem o nazwie compress (tworzy
-pliki z rozszerzeniem .Z). ncompres nie obs³uguje plików .gz (ale gzip
-potrafi obs³ugiwaæ pliki ncompress-a).
+ncompress jest narzêdziem umo¿liwiaj±cym szybk± kompresjê i
+dekompresjê plików zgodnym z orginalnym *nixowym narzêdziem o nazwie
+compress (tworzy pliki z rozszerzeniem .Z). ncompres nie obs³uguje
+plików .gz (ale gzip potrafi obs³ugiwaæ pliki ncompress-a).
 
 %description -l tr
-ncompress, orijinal Un*X compress uygulamasý ile uyumlu (.Z uzantýlý) hýzlý
-sýkýþtýrma ve açma iþlemleri yapýlmasýný saðlar. ncompress gzip ile
-sýkýþtýrýlmýþ dosyalarla iþlem yapamaz. (gzip compress ile sýkýþtýrýlmýþ
-dosyalar üzerinde çalýþabilir)
+ncompress, orijinal Un*X compress uygulamasý ile uyumlu (.Z uzantýlý)
+hýzlý sýkýþtýrma ve açma iþlemleri yapýlmasýný saðlar. ncompress gzip
+ile sýkýþtýrýlmýþ dosyalarla iþlem yapamaz. (gzip compress ile
+sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 
 %prep
 %setup -q
