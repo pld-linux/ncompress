@@ -8,6 +8,7 @@ Version:	4.2.4
 Release:	15
 Copyright:	unknown
 Group:		Utilities/Archiving
+Group(pl):	Narzêdzia//Archiwizacja
 Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
 Source1:	compress.1.pl
 Patch:		ncompress-make.patch
@@ -47,7 +48,7 @@ dosyalar üzerinde çalýþabilir)
 %patch -p1
 
 %build
-%ifarch i386
+%ifarch i386 i486 i586 i686
 make "RPM_OPT_FLAGS=$RPM_OPT_FLAGS" ENDIAN=4321
 %endif
 
