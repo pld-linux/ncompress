@@ -66,13 +66,13 @@ install -d $RPM_BUILD_ROOT/usr/{bin,man/{man1,pl/man1}}
 
 install -s compress $RPM_BUILD_ROOT/usr/bin
 ln -sf compress $RPM_BUILD_ROOT/usr/bin/uncompress
-install compress.1 $RPM_BUILD_ROOT/usr/man/man1
-install %{SOURCE1} $RPM_BUILD_ROOT/usr/man/pl/man1/compress.1
+install compress.1 $RPM_BUILD_ROOT%{_mandir}/man1
+install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/compress.1
 
-echo ".so compress.1" > $RPM_BUILD_ROOT/usr/man/man1/uncompress.1
-echo ".so compress.1" > $RPM_BUILD_ROOT/usr/man/pl/man1/uncompress.1
+echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/man1/uncompress.1
+echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/pl/man1/uncompress.1
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/{man1/*,pl/man1/*} \
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/{man1/*,pl/man1/*} \
 	LZW.INFO README
 
 %clean
@@ -83,8 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc {LZW.INFO,README}.gz
 %attr(755,root,root) /usr/bin/*
 
-%lang(pl) /usr/man/pl/man1/*
-/usr/man/man1/*
+%lang(pl) %{_mandir}/pl/man1/*
+%{_mandir}/man1/*
 
 %changelog
 * Sat Apr 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
