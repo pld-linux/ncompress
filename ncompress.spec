@@ -85,9 +85,3 @@ rm -rf $RPM_BUILD_ROOT
 
 %lang(pl) %{_mandir}/pl/man1/*
 %{_mandir}/man1/*
-
-%changelog
-* Fri Jun  4 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [4.2.4-15]
-- based on RH spec,
-- spec rewrited by PLD team.
