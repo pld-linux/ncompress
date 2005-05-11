@@ -14,6 +14,7 @@ Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 # Source1-md5:	1f664b832aee8282bc50f54635b98130
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-gcc34.patch
+BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -66,7 +67,7 @@ sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 %{__make} OPT="%{rpmcflags}" ENDIAN=1234
 %endif
 
-%ifarch alpha ia64 amd64
+%ifarch alpha ia64 %{x8664}
 %{__make} OPT="%{rpmcflags} -DNOALLIGN=0" ENDIAN=4321
 %endif
 
