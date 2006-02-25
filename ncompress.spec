@@ -59,17 +59,19 @@ sýkýþtýrýlmýþ dosyalar üzerinde çalýþabilir)
 %patch1 -p1
 
 %build
-%ifarch %{ix86}
-%{__make} OPT="%{rpmcflags}" ENDIAN=4321
+ENDIAN="4321"
+%ifarch sparc sparc64 m68k armv4l ppc ppc64 s390
+ENDIAN="1234"
 %endif
 
-%ifarch sparc sparc64 m68k armv4l ppc s390
-%{__make} OPT="%{rpmcflags}" ENDIAN=1234
+OPTCFLAGS=""
+%ifarch alpha ia64 %{x8664} ppc64
+OPTCFLAGS="-DNOALLIGN=0"
 %endif
 
-%ifarch alpha ia64 %{x8664}
-%{__make} OPT="%{rpmcflags} -DNOALLIGN=0" ENDIAN=4321
-%endif
+%{__make} \
+	CC="%{__cc} %{rpmcflags} $OPTCFLAGS" \
+	ENDIAN="$ENDIAN"
 
 %install
 rm -rf $RPM_BUILD_ROOT
