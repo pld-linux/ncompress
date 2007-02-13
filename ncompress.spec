@@ -1,8 +1,8 @@
 Summary:	A fast compress utility
-Summary(de.UTF-8):   ein schnelles Komprimierungs-Dienstprogramm
-Summary(fr.UTF-8):   Utilitaire rapide de compression
-Summary(pl.UTF-8):   Narzędzie do szybkiego kompresowania plików
-Summary(tr.UTF-8):   Hızlı bir sıkıştırma aracı
+Summary(de.UTF-8):	ein schnelles Komprimierungs-Dienstprogramm
+Summary(fr.UTF-8):	Utilitaire rapide de compression
+Summary(pl.UTF-8):	Narzędzie do szybkiego kompresowania plików
+Summary(tr.UTF-8):	Hızlı bir sıkıştırma aracı
 Name:		ncompress
 Version:	4.2.4
 Release:	26
