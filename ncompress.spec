@@ -5,7 +5,7 @@ Summary(pl.UTF-8):	Narzędzie do szybkiego kompresowania plików
 Summary(tr.UTF-8):	Hızlı bir sıkıştırma aracı
 Name:		ncompress
 Version:	4.2.4
-Release:	26
+Release:	27
 License:	distributable
 Group:		Applications/Archiving
 Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
