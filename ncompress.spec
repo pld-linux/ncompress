@@ -22,7 +22,7 @@ ncompress is a utility that will do fast compression and decompression
 compatible with the original *nix compress utility (.Z extensions). It
 will not handle gzipped (.gz) images (although gzip can handle
 compress images). It is pretty much obsolete - unless you need to
-exchange files with some really odd unix variants, use gzip or bzip2
+exchange files with some really odd Unix variants, use gzip or bzip2
 instead.
 
 %description -l de.UTF-8
