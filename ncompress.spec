@@ -8,7 +8,7 @@ Version:	4.2.4.3
 Release:	1
 License:	distributable
 Group:		Applications/Archiving
-Source0:	http://dl.sourceforge.net/ncompress/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/ncompress/%{name}-%{version}.tar.gz
 # Source0-md5:	5de31b5b5516f5d0abe26470a5b221e9
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	1f664b832aee8282bc50f54635b98130
@@ -86,7 +86,7 @@ echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/man1/uncompress.1
 
 for a in de it pl ; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$a/man1
-	install $a/man1/* $RPM_BUILD_ROOT%{_mandir}/$a/man1/
+	install $a/man1/* $RPM_BUILD_ROOT%{_mandir}/$a/man1
 	echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/$a/man1/uncompress.1
 done
 
@@ -95,9 +95,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LZW.INFO README
-%attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/*
+%doc Acknowleds Changes LZW.INFO README
+%attr(755,root,root) %{_bindir}/compress
+%attr(755,root,root) %{_bindir}/uncompress
+%{_mandir}/man1/compress.1*
+%{_mandir}/man1/uncompress.1*
 %lang(de) %{_mandir}/de/man1/*
 %lang(it) %{_mandir}/it/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
