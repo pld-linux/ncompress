@@ -4,16 +4,17 @@ Summary(fr.UTF-8):	Utilitaire rapide de compression
 Summary(pl.UTF-8):	Narzędzie do szybkiego kompresowania plików
 Summary(tr.UTF-8):	Hızlı bir sıkıştırma aracı
 Name:		ncompress
-Version:	4.2.4
-Release:	27
+Version:	4.2.4.3
+Release:	1
 License:	distributable
 Group:		Applications/Archiving
-Source0:	ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.Z
-# Source0-md5:	171e69cdb4a28b24597f1f913ac44926
+Source0:	http://dl.sourceforge.net/ncompress/%{name}-%{version}.tar.gz
+# Source0-md5:	5de31b5b5516f5d0abe26470a5b221e9
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	1f664b832aee8282bc50f54635b98130
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-gcc34.patch
+URL:		http://ncompress.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -69,7 +70,7 @@ OPTCFLAGS=""
 OPTCFLAGS="-DNOALLIGN=0"
 %endif
 
-%{__make} \
+%{__make} -f Makefile \
 	CC="%{__cc} %{rpmcflags} $OPTCFLAGS" \
 	ENDIAN="$ENDIAN"
 
