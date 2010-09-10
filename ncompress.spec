@@ -4,12 +4,12 @@ Summary(fr.UTF-8):	Utilitaire rapide de compression
 Summary(pl.UTF-8):	Narzędzie do szybkiego kompresowania plików
 Summary(tr.UTF-8):	Hızlı bir sıkıştırma aracı
 Name:		ncompress
-Version:	4.2.4.3
+Version:	4.2.4.4
 Release:	1
 License:	distributable
 Group:		Applications/Archiving
 Source0:	http://downloads.sourceforge.net/ncompress/%{name}-%{version}.tar.gz
-# Source0-md5:	5de31b5b5516f5d0abe26470a5b221e9
+# Source0-md5:	4be215caacf3d082bfe24cfdbaba538e
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	1f664b832aee8282bc50f54635b98130
 Patch0:		%{name}-make.patch
