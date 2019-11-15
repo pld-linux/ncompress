@@ -4,12 +4,12 @@ Summary(fr.UTF-8):	Utilitaire rapide de compression
 Summary(pl.UTF-8):	Narzędzie do szybkiego kompresowania plików
 Summary(tr.UTF-8):	Hızlı bir sıkıştırma aracı
 Name:		ncompress
-Version:	4.2.4.4
+Version:	4.2.4.5
 Release:	1
-License:	distributable
+License:	Public Domain
 Group:		Applications/Archiving
 Source0:	http://downloads.sourceforge.net/ncompress/%{name}-%{version}.tar.gz
-# Source0-md5:	4be215caacf3d082bfe24cfdbaba538e
+# Source0-md5:	9ab5d54d764d38050e9256b635bf09a9
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	1f664b832aee8282bc50f54635b98130
 Patch0:		%{name}-make.patch
@@ -60,14 +60,16 @@ sıkıştırılmış dosyalar üzerinde çalışabilir)
 %patch1 -p1
 
 %build
-ENDIAN="4321"
-%ifarch sparc sparc64 m68k armv4l ppc ppc64 s390
+%ifarch sparc sparc64 m68k %{arm} ppc ppc64 s390
 ENDIAN="1234"
+%else
+ENDIAN="4321"
 %endif
 
-OPTCFLAGS=""
 %ifarch alpha ia64 %{x8664} ppc64
 OPTCFLAGS="-DNOALLIGN=0"
+%else
+OPTCFLAGS=""
 %endif
 
 %{__make} -f Makefile \
@@ -86,7 +88,7 @@ echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/man1/uncompress.1
 
 for a in de it pl ; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$a/man1
-	install $a/man1/* $RPM_BUILD_ROOT%{_mandir}/$a/man1
+	cp -p $a/man1/* $RPM_BUILD_ROOT%{_mandir}/$a/man1
 	echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/$a/man1/uncompress.1
 done
 
@@ -95,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Acknowleds Changes LZW.INFO README
+%doc Acknowleds Changes LICENSE.txt LZW.INFO README.md UNLICENSE
 %attr(755,root,root) %{_bindir}/compress
 %attr(755,root,root) %{_bindir}/uncompress
 %{_mandir}/man1/compress.1*
