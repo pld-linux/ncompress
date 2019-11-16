@@ -10,12 +10,15 @@ License:	Public Domain
 Group:		Applications/Archiving
 Source0:	http://downloads.sourceforge.net/ncompress/%{name}-%{version}.tar.gz
 # Source0-md5:	9ab5d54d764d38050e9256b635bf09a9
-Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
-# Source1-md5:	1f664b832aee8282bc50f54635b98130
+# from man-pages.spec --with tars
+Source1:	%{name}-man-pages.tar.xz
+# Source1-md5:	d780e5ec6fdceb9f2ab730f0cbae68da
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-gcc34.patch
 URL:		http://ncompress.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.213
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -83,14 +86,10 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 install compress $RPM_BUILD_ROOT%{_bindir}
 ln -sf compress $RPM_BUILD_ROOT%{_bindir}/uncompress
 
-install compress.1 $RPM_BUILD_ROOT%{_mandir}/man1
+cp -p compress.1 $RPM_BUILD_ROOT%{_mandir}/man1
 echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/man1/uncompress.1
 
-for a in de it pl ; do
-	install -d $RPM_BUILD_ROOT%{_mandir}/$a/man1
-	cp -p $a/man1/* $RPM_BUILD_ROOT%{_mandir}/$a/man1
-	echo ".so compress.1" > $RPM_BUILD_ROOT%{_mandir}/$a/man1/uncompress.1
-done
+tar xf %{SOURCE1} -C $RPM_BUILD_ROOT%{_mandir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -105,3 +104,4 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{_mandir}/de/man1/*
 %lang(it) %{_mandir}/it/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
+%lang(tr) %{_mandir}/tr/man1/*
