@@ -4,18 +4,17 @@ Summary(fr.UTF-8):	Utilitaire rapide de compression
 Summary(pl.UTF-8):	Narzędzie do szybkiego kompresowania plików
 Summary(tr.UTF-8):	Hızlı bir sıkıştırma aracı
 Name:		ncompress
-Version:	4.2.4.5
+Version:	4.2.4.6
 Release:	1
 License:	Public Domain
 Group:		Applications/Archiving
-Source0:	http://downloads.sourceforge.net/ncompress/%{name}-%{version}.tar.gz
-# Source0-md5:	9ab5d54d764d38050e9256b635bf09a9
+Source0:	https://downloads.sourceforge.net/ncompress/%{name}-%{version}.tar.gz
+# Source0-md5:	d74824b9efad7ce719fae785e6bd9c54
 # from man-pages.spec --with tars
 Source1:	%{name}-man-pages.tar.xz
 # Source1-md5:	d780e5ec6fdceb9f2ab730f0cbae68da
 Patch0:		%{name}-make.patch
-Patch1:		%{name}-gcc34.patch
-URL:		http://ncompress.sourceforge.net/
+URL:		https://ncompress.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -60,7 +59,6 @@ sıkıştırılmış dosyalar üzerinde çalışabilir)
 %prep
 %setup -q -a1
 %patch -P0 -p1
-%patch -P1 -p1
 
 %build
 %ifarch sparc sparc64 m68k %{arm} ppc ppc64 s390
