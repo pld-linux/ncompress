@@ -59,8 +59,8 @@ sıkıştırılmış dosyalar üzerinde çalışabilir)
 
 %prep
 %setup -q -a1
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %ifarch sparc sparc64 m68k %{arm} ppc ppc64 s390
